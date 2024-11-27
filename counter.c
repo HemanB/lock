@@ -7,7 +7,7 @@ static volatile int counter = 0;
 
 // add any global declarations here
 // Hint: Declare your lock here
-
+pthread_mutex_t lock;
 
 // This routine will be called twice and 
 // increments the counter 10000000 each
@@ -18,7 +18,9 @@ void *thread_count(void *args) {
   // Add your code below
 
   for (int i = 0; i < 10000000; i++) {
+      Pthread_mutex_lock(&lock);
       counter = counter + 1;
+      Pthread_mutex_unlock(&lock);
   }
   
   // Add your code above
@@ -30,7 +32,8 @@ int main (int argc, char **argv)
 {
   pthread_t p1, p2;
   // Initialize the lock below
-  
+  Pthread_mutex_init(&lock, NULL);
+
   Pthread_create(&p1,NULL,thread_count,"A");
   Pthread_create(&p2,NULL,thread_count,"B");
   Pthread_join(p1,NULL);

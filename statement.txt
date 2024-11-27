@@ -1,0 +1,2 @@
+Utilized slides for concurrency and threads conceptual understanding.
+Utilized ChatGPT to debug the main section for "array". I did not initialize locks for each thread properly.
